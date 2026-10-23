@@ -1,0 +1,9 @@
+# JapanesePublicHolidays SDK utility: prepare_body
+require_relative 'media'
+module JapanesePublicHolidaysUtilities
+  PrepareBody = ->(ctx) {
+    return nil unless ctx.op.input == "data"
+    return JapanesePublicHolidaysUtilities.raw_body(ctx.reqdata) if JapanesePublicHolidaysUtilities.raw_request?(ctx.point)
+    ctx.utility.transform_request.call(ctx)
+  }
+end

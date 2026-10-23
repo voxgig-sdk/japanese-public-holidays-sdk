@@ -1,0 +1,71 @@
+# Entity: jpn
+
+main: kit: entity: jpn: {
+
+  alias: field: {}
+
+  fields: {
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: true
+      sh: "Date in Japan time, YYYY-MM-DD."
+      t: "`$STRING`"
+    }
+    kind: {
+      h: "Kind"
+      n: "kind"
+      r: true
+      sh: "national, substitute, citizens or special."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$OBJECT`"
+    }
+    weekday: {
+      h: "Weekday"
+      n: "weekday"
+      r: false
+      sh: "English three-letter weekday."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "jpn"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /jp.json"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/jp.json"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "jp.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

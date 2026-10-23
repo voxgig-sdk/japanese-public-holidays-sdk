@@ -1,0 +1,26 @@
+# BasicYearFlow
+
+main: kit: flow: BasicYearFlow:
+{
+  entity: "year",
+  kind: "basic",
+  name: "BasicYearFlow",
+  step: [
+    {
+      m: {
+        year: "year01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "year_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicYearFlow"
+}

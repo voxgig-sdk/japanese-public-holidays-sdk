@@ -1,0 +1,72 @@
+<?php
+declare(strict_types=1);
+
+// JapanesePublicHolidays SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+JapanesePublicHolidaysUtility::setRegistrar(function (JapanesePublicHolidaysUtility $u): void {
+    $u->clean = [JapanesePublicHolidaysClean::class, 'call'];
+    $u->clean_add = [JapanesePublicHolidaysClean::class, 'add'];
+    $u->clean_explain = [JapanesePublicHolidaysDone::class, 'clean_explain'];
+    $u->done = [JapanesePublicHolidaysDone::class, 'call'];
+    $u->make_error = [JapanesePublicHolidaysMakeError::class, 'call'];
+    $u->feature_add = [JapanesePublicHolidaysFeatureAdd::class, 'call'];
+    $u->feature_hook = [JapanesePublicHolidaysFeatureHook::class, 'call'];
+    $u->feature_init = [JapanesePublicHolidaysFeatureInit::class, 'call'];
+    $u->fetcher = [JapanesePublicHolidaysFetcher::class, 'call'];
+    $u->make_fetch_def = [JapanesePublicHolidaysMakeFetchDef::class, 'call'];
+    $u->make_context = [JapanesePublicHolidaysMakeContext::class, 'call'];
+    $u->make_options = [JapanesePublicHolidaysMakeOptions::class, 'call'];
+    $u->make_request = [JapanesePublicHolidaysMakeRequest::class, 'call'];
+    $u->make_response = [JapanesePublicHolidaysMakeResponse::class, 'call'];
+    $u->make_result = [JapanesePublicHolidaysMakeResult::class, 'call'];
+    $u->make_point = [JapanesePublicHolidaysMakePoint::class, 'call'];
+    $u->make_spec = [JapanesePublicHolidaysMakeSpec::class, 'call'];
+    $u->make_url = [JapanesePublicHolidaysMakeUrl::class, 'call'];
+    $u->param = [JapanesePublicHolidaysParam::class, 'call'];
+    $u->prepare_auth = [JapanesePublicHolidaysPrepareAuth::class, 'call'];
+    $u->prepare_body = [JapanesePublicHolidaysPrepareBody::class, 'call'];
+    $u->prepare_headers = [JapanesePublicHolidaysPrepareHeaders::class, 'call'];
+    $u->prepare_method = [JapanesePublicHolidaysPrepareMethod::class, 'call'];
+    $u->prepare_params = [JapanesePublicHolidaysPrepareParams::class, 'call'];
+    $u->prepare_path = [JapanesePublicHolidaysPreparePath::class, 'call'];
+    $u->prepare_query = [JapanesePublicHolidaysPrepareQuery::class, 'call'];
+    $u->graphql_body = [JapanesePublicHolidaysGraphql::class, 'body'];
+    $u->graphql_errors = [JapanesePublicHolidaysGraphql::class, 'errors'];
+    $u->result_basic = [JapanesePublicHolidaysResultBasic::class, 'call'];
+    $u->result_body = [JapanesePublicHolidaysResultBody::class, 'call'];
+    $u->result_headers = [JapanesePublicHolidaysResultHeaders::class, 'call'];
+    $u->transform_request = [JapanesePublicHolidaysTransformRequest::class, 'call'];
+    $u->transform_response = [JapanesePublicHolidaysTransformResponse::class, 'call'];
+});

@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "jpn": {
+      "JPN00": {
+        "date": "s28",
+        "kind": "s29",
+        "name": {},
+        "weekday": "s2b"
+      },
+      "JPN01": {
+        "date": "s50",
+        "kind": "s51",
+        "name": {},
+        "weekday": "s53"
+      },
+      "JPN02": {
+        "date": "s78",
+        "kind": "s79",
+        "name": {},
+        "weekday": "s7b"
+      }
+    }
+  },
+  "new": {
+    "jpn": {
+      "jpn_ref01": {
+        "date": "sa0",
+        "kind": "sa1",
+        "name": {},
+        "weekday": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /jp.json": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

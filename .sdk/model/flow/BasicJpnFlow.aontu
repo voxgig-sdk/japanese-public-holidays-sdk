@@ -1,0 +1,22 @@
+# BasicJpnFlow
+
+main: kit: flow: BasicJpnFlow:
+{
+  entity: "jpn",
+  kind: "basic",
+  name: "BasicJpnFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "jpn_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicJpnFlow"
+}

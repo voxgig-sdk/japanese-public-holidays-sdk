@@ -1,0 +1,17 @@
+{
+  "files": [
+    "SUMMARY.md"
+  ],
+  "config": ".sdk/doc/qa/vale.ini",
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "> Every public holiday in Japan since 1955, from Business Box (marubox.jp): English and Japanese names and the kind of holiday (national, substitute, citizens or special), edited from the Cabinet Office&#39;s official list. Static JSON files, no key, no sign-up, served with Access-Control-Allow-Origin: *. Credit is required: &quot;Source: Cabinet Office, Government of Japan. Edited by Business Box (marubox.jp)&quot;; cache the files rather than fetching on every request.\n>\n> Sources: the documentation page https://marubox.jp/holidays/, with both JSON files probed live on 2026-10-23 (all years, 2026, 1955, and 2030). On that date the data ran from 1955 to 2027 (1,067 holidays) and was last updated 2026-09-29.\n>\n> Not modelled: the CSV (jp.csv) and iCalendar (jp.ics, jp-ja.ics) forms of the same data. A year outside the data (for example 2030) does not 404: the site answers HTTP 200 with an HTML page, so only years present in the data are valid.",
+      "All holidays",
+      "Date in Japan time, YYYY-MM-DD.",
+      "English three-letter weekday.",
+      "The year&#39;s holidays",
+      "national, substitute, citizens or special."
+    ]
+  }
+}

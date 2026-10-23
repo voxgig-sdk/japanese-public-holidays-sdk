@@ -1,0 +1,219 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Japanese Public Holidays",
+    "version": "1.0.0",
+    "description": "Every public holiday in Japan since 1955, from Business Box (marubox.jp): English and Japanese names and the kind of holiday (national, substitute, citizens or special), edited from the Cabinet Office's official list. Static JSON files, no key, no sign-up, served with Access-Control-Allow-Origin: *. Credit is required: \"Source: Cabinet Office, Government of Japan. Edited by Business Box (marubox.jp)\"; cache the files rather than fetching on every request.\n\nSources: the documentation page https://marubox.jp/holidays/, with both JSON files probed live on 2026-10-23 (all years, 2026, 1955, and 2030). On that date the data ran from 1955 to 2027 (1,067 holidays) and was last updated 2026-09-29.\n\nNot modelled: the CSV (jp.csv) and iCalendar (jp.ics, jp-ja.ics) forms of the same data. A year outside the data (e.g. 2030) does not 404: the site answers HTTP 200 with an HTML page, so only years present in the data are valid."
+  },
+  "externalDocs": {
+    "description": "Japanese public holidays: calendar and free data",
+    "url": "https://marubox.jp/holidays/"
+  },
+  "servers": [
+    {
+      "url": "https://marubox.jp/holidays"
+    }
+  ],
+  "paths": {
+    "/jp.json": {
+      "get": {
+        "operationId": "getHolidayCalendar",
+        "summary": "Every Japanese public holiday since 1955",
+        "description": "All holidays in every available year, oldest first.",
+        "responses": {
+          "200": {
+            "description": "All holidays.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HolidayCalendar"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jp/{year}.json": {
+      "get": {
+        "operationId": "getHolidayYear",
+        "summary": "Japanese public holidays in one year",
+        "description": "The holidays of one year, in date order.",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "path",
+            "required": true,
+            "description": "Four-digit year, 1955 to the latest published year (2027 on 2026-10-23).",
+            "schema": {
+              "type": "integer",
+              "minimum": 1955
+            },
+            "example": 2026
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The year's holidays.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HolidayYear"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HolidayCalendar": {
+        "type": "object",
+        "description": "Every holiday in the data set.",
+        "properties": {
+          "country": {
+            "type": "string",
+            "description": "ISO country code.",
+            "example": "JP"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date",
+            "description": "When the data was last updated.",
+            "example": "2026-09-29"
+          },
+          "source": {
+            "$ref": "#/components/schemas/DataSource"
+          },
+          "credit": {
+            "type": "string",
+            "description": "Required attribution text."
+          },
+          "licence": {
+            "type": "string",
+            "description": "Licence URL (Digital Agency Public Data License v1.0, CC BY 4.0 compatible)."
+          },
+          "docs": {
+            "type": "string",
+            "example": "https://marubox.jp/holidays/"
+          },
+          "holidays": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Holiday"
+            }
+          }
+        },
+        "required": [
+          "country",
+          "holidays"
+        ]
+      },
+      "HolidayYear": {
+        "type": "object",
+        "description": "The holidays of one year.",
+        "properties": {
+          "country": {
+            "type": "string",
+            "description": "ISO country code.",
+            "example": "JP"
+          },
+          "year": {
+            "type": "integer",
+            "example": 2026
+          },
+          "updated": {
+            "type": "string",
+            "format": "date",
+            "description": "When the data was last updated.",
+            "example": "2026-09-29"
+          },
+          "source": {
+            "$ref": "#/components/schemas/DataSource"
+          },
+          "credit": {
+            "type": "string",
+            "description": "Required attribution text."
+          },
+          "licence": {
+            "type": "string",
+            "description": "Licence URL (Digital Agency Public Data License v1.0, CC BY 4.0 compatible)."
+          },
+          "docs": {
+            "type": "string",
+            "example": "https://marubox.jp/holidays/"
+          },
+          "holidays": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Holiday"
+            }
+          }
+        },
+        "required": [
+          "country",
+          "year",
+          "holidays"
+        ]
+      },
+      "Holiday": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date in Japan time, YYYY-MM-DD.",
+            "example": "2026-01-01"
+          },
+          "weekday": {
+            "type": "string",
+            "description": "English three-letter weekday.",
+            "example": "Thu"
+          },
+          "name": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string",
+                "example": "New Year's Day"
+              },
+              "ja": {
+                "type": "string",
+                "example": "元日"
+              }
+            },
+            "required": [
+              "en",
+              "ja"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "description": "national, substitute, citizens or special.",
+            "example": "national"
+          }
+        },
+        "required": [
+          "date",
+          "name",
+          "kind"
+        ]
+      },
+      "DataSource": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Cabinet Office, Government of Japan"
+          },
+          "url": {
+            "type": "string",
+            "description": "The Cabinet Office CSV the data is edited from."
+          }
+        }
+      }
+    }
+  }
+}
